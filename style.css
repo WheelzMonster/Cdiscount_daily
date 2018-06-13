@@ -1,0 +1,48 @@
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333333;
+  width: auto;
+  height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+li:hover, .active {
+  color: #ffffff;
+  background: #2196f3;
+}
+
+.timer {
+  background-color:rgb(16, 70, 218);
+  color:rgb(202, 53, 23);
+  font-size:20px;
+  text-align:center;
+}
+
+#Container {
+  padding-left: 129px;
+}

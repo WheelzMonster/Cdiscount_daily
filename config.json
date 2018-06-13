@@ -1,0 +1,35 @@
+{
+    "chrono": {
+        "minutes": 0,
+        "secondes": 9
+    },
+    "participants": [
+        {
+            "nom": "François"
+        },
+        {
+            "nom": "Louis"
+        },
+        {
+            "nom": "Maxime"
+        },
+        {
+            "nom": "Mehdi"
+        },
+        {
+            "nom": "Miguel"
+        },
+        {
+            "nom": "Nicolas"
+        },
+        {
+            "nom": "Sacha"
+        },
+        {
+            "nom": "Sebastien"
+        },
+        {
+            "nom": "Yannick"
+        }
+    ]
+}
