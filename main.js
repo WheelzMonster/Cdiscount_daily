@@ -8,47 +8,22 @@ $.getJSON("./config.json", function (data) {
     secondes = data.chrono.secondes;
     participants = data.participants;
 
-    timer();
+    $(".timer").text("00 : 00");
+
     showParticipants();
+    timer();
 });
 
-function timer(){
-    var showMinutes;
-    var showSecondes;
-    if(secondes === 0 && minutes === 0){
-        $(".timer").text("C'est fini");
-    };
-    
-    if (secondes > 0){
-        if(minutes < 10){
-            showMinutes = "0" + minutes;
-        } else {
-            showMinutes = minutes;
-        }
-        if(secondes < 10){
-            showSecondes = "0" + secondes;
-        } else {
-            showSecondes = secondes;
-        }
-        $(".timer").text(showMinutes + ":" + showSecondes);
-        secondes = secondes - 1;
-        setTimeout(timer, 1000);
-    }
-    if(secondes < 0){
-        secondes = 59;
-        minutes = minutes - 1;
-    }
-};
 
-function showParticipants(){
+function showParticipants() {
     currentId = 0;
 
-    for (var participantIndex = 0; participantIndex < participants.length; participantIndex++){
+    for (var participantIndex = 0; participantIndex < participants.length; participantIndex++) {
         var participantId = "participant" + participantIndex;
         
         if (participantIndex === currentId) {
             $("ul").append("<li id='" + participantId + "' class='active'>" + participants[participantIndex].nom + "</li>");
-        } else{
+        } else {
             $("ul").append("<li id='" + participantId + "'>" + participants[participantIndex].nom + "</li>");
         }
     }
@@ -63,7 +38,40 @@ $("#suivant").click(function() {
 });
 
 $("#precedent").click(function() {
-    $("#participant" + currentId).removeClass("active");
-    currentId--;
-    $("#participant" + currentId).addClass("active");
+    if(currentId > 0) {
+        $("#participant" + currentId).removeClass("active");
+        currentId--;
+        $("#participant" + currentId).addClass("active");
+    }
+});
+
+$("#start").click(function() {
+    function timer() {
+        var showMinutes;
+        var showSecondes;
+        if(secondes === 0 && minutes === 0){
+            $(".timer").text("C'est fini !");
+        };
+        
+        if (secondes > 0) {
+            if(minutes < 10) {
+                showMinutes = "0" + minutes;
+            } else {
+                showMinutes = minutes;
+            }
+            if(secondes < 10) {
+                showSecondes = "0" + secondes;
+            } else {
+                showSecondes = secondes;
+            }
+            $(".timer").text(showMinutes + ":" + showSecondes);
+            secondes = secondes - 1;
+            setTimeout(timer, 1000);
+        }
+        if(secondes < 0) {
+            secondes = 59;
+            minutes = minutes - 1;
+        }
+    };
+    timer();
 });
