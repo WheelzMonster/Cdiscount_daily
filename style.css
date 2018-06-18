@@ -36,7 +36,7 @@ li:hover, .active {
   background: #2196f3;
 }
 
-.timer {
+#timer {
   background-color:#ffffff;
   color: #000000;
   border: 1px solid #2196f3;
@@ -63,7 +63,7 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.75);
 }
 
-#start{
+#switch {
   position: absolute;
   margin-left: 497px;
   margin-top: 358px;
@@ -71,7 +71,7 @@ button {
   padding: 2 8px;
 }
 
-#stop{
+#stop {
   position: absolute;
   margin-left: 566px;
   margin-top: 358px;
@@ -79,7 +79,7 @@ button {
   padding: 2 8px;
 }
 
-#precedent{
+#precedent {
   position: absolute;
   margin-left: 388px;
   margin-top: 318px;
@@ -88,7 +88,7 @@ button {
 } 
 
 
-#suivant{
+#suivant {
   position: absolute;
   margin-left: 664px;
   margin-top: 318px;

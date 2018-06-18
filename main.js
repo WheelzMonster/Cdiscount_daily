@@ -2,21 +2,39 @@ var minutes;
 var secondes;
 var participants;
 var currentId;
+var isTimerActive;
+var isStart = true;
 
 $.getJSON("./config.json", function (data) {
     minutes = data.chrono.minutes;
     secondes = data.chrono.secondes;
     participants = data.participants;
 
-    $(".timer").text("00 : 00");
+    if (minutes < 10) {
+        showMinutes = "0" + minutes;
+    } else {
+        showMinutes = minutes;
+    }
+
+    if (secondes < 10) {
+        showSecondes = "0" + secondes;
+    } else {
+        showSecondes = secondes;
+    }
+
+    $("#timer").text(showMinutes + ":" + showSecondes);
 
     showParticipants();
-    timer();
 });
 
+function writeCurrentName() {
+    $("h1").text(participants[currentId].nom)
+}
 
 function showParticipants() {
     currentId = 0;
+
+    writeCurrentName();
 
     for (var participantIndex = 0; participantIndex < participants.length; participantIndex++) {
         var participantId = "participant" + participantIndex;
@@ -29,49 +47,70 @@ function showParticipants() {
     }
 };
 
+function getParticipantId() {
+    return "#participant" + currentId;
+};
+
 $("#suivant").click(function() {
     if(currentId < participants.length - 1){
-        $("#participant" + currentId).removeClass("active");
+        $(getParticipantId()).removeClass("active");
         currentId++;
-        $("#participant" + currentId).addClass("active");
+        $(getParticipantId()).addClass("active");
+        writeCurrentName();
     }
 });
 
 $("#precedent").click(function() {
     if(currentId > 0) {
-        $("#participant" + currentId).removeClass("active");
+        $(getParticipantId()).removeClass("active");
         currentId--;
-        $("#participant" + currentId).addClass("active");
+        $(getParticipantId()).addClass("active");
+        writeCurrentName();
     }
 });
 
-$("#start").click(function() {
-    function timer() {
-        var showMinutes;
-        var showSecondes;
-        if(secondes === 0 && minutes === 0){
-            $(".timer").text("C'est fini !");
-        };
-        
-        if (secondes > 0) {
-            if(minutes < 10) {
+function timer() {
+    var showMinutes;
+    var showSecondes;
+
+    if (isTimerActive == true) {
+        if (secondes <= 0 && minutes <= 0) {
+            $("#timer").text("C'est fini !");
+        } else {
+            if (minutes < 10) {
                 showMinutes = "0" + minutes;
             } else {
                 showMinutes = minutes;
             }
-            if(secondes < 10) {
+
+            if (secondes < 10) {
                 showSecondes = "0" + secondes;
             } else {
                 showSecondes = secondes;
             }
-            $(".timer").text(showMinutes + ":" + showSecondes);
+
+            $("#timer").text(showMinutes + ":" + showSecondes);
             secondes = secondes - 1;
             setTimeout(timer, 1000);
+
+            if (secondes < 0) {
+                secondes = 59;
+                minutes = minutes - 1;
+            }
         }
-        if(secondes < 0) {
-            secondes = 59;
-            minutes = minutes - 1;
-        }
-    };
+    }     
+};
+
+$("#switch").click(function() {
+    if(isStart == true) {
+        isTimerActive = true;
+        isStart = false;
+        $("#switch").text("Stop");
+    } else {
+        isTimerActive = false;
+        isStart = true;
+        $("#switch").text("Start");
+    }
+
     timer();
 });
