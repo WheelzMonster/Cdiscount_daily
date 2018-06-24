@@ -44,8 +44,8 @@ li:hover, .active {
   font-size:30px;
   text-align:center;
   position: absolute;
-  margin-left: 463px;
-  margin-top: 308px;
+  margin-left: 495px;
+  margin-top: 248px;
   padding: 3px;
   width: 180px;
   height: auto;
@@ -65,24 +65,17 @@ button {
 
 #switch {
   position: absolute;
-  margin-left: 497px;
-  margin-top: 358px;
+  margin-left: 544px;
+  margin-top: 298px;
   font-size: 15px;
-  padding: 2 8px;
+  padding: 2 23px;
 }
 
-#stop {
-  position: absolute;
-  margin-left: 566px;
-  margin-top: 358px;
-  font-size: 15px;
-  padding: 2 8px;
-}
 
 #precedent {
   position: absolute;
-  margin-left: 388px;
-  margin-top: 318px;
+  margin-left: 420px;
+  margin-top: 258px;
   font-size: 15px;
   padding: 2 8px;
 } 
@@ -90,8 +83,20 @@ button {
 
 #suivant {
   position: absolute;
-  margin-left: 664px;
-  margin-top: 318px;
+  margin-left: 696px;
+  margin-top: 258px;
   font-size: 15px;
   padding: 2 8px;
+}
+
+h1{
+  text-align: center;
+  padding-top: 5px;
+}
+
+header{
+  width: 100%;
+  height: 80px;
+  border: solid 1px #2196f3;
+  
 }
