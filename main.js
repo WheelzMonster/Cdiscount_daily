@@ -103,8 +103,17 @@ $('#precedent').click(function() {
 function timer() {
   if (isTimerActive == true) {
     showTimer();
+
     participantsTimer[currentId]++;
-    $(".active span").text(participantsTimer[currentId]);
+    var showMinutes = 0;
+    var showSecondes = participantsTimer[currentId];
+
+    while (showSecondes >= 60) {
+      showMinutes++;
+      showSecondes = showSecondes - 60;
+    };
+
+    $(".active span").text(getTimer(showMinutes, showSecondes));
     secondes = secondes - 1;
     setTimeout(timer, 1000);
 
