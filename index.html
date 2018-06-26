@@ -4,24 +4,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Daily Timer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 <body>
     <nav>
-        <ul class="participants"></ul>
+        <ul id="sortable" class="participants"></ul>
     </nav>
 
     <div id="Container">
-        <header>
+        <div class="h1Contain">
             <h1></h1>
-        </header>
+        </div>
         <span id="timer"></span>
-        <button id="precedent">< Prec</button>
-        <button id="switch">Start</button>
-        <button id="suivant">Suiv ></button>
+        <button type="button" id="precedent" class="btn btn-outline-primary">< Prec</button>
+        <button type="button" id="switch" class="btn btn-outline-dark">Start</button>
+        <button type="button" id="suivant" class="btn btn-outline-primary">Suiv ></button>
     </div>
 
     <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery-ui.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

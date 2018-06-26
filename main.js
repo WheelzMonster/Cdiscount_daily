@@ -4,11 +4,12 @@ var participants;
 var currentId = 0;
 var isTimerActive;
 var isStart = true;
-var participantsTimer;
+var participantsTimer = [];
+var sortableParticipants = [];
 
 // Write the name of the current participant
 function writeCurrentName() {
-  $('h1').text(participants[currentId].nom);
+  $('h1').text(participants[sortableParticipants[currentId]].nom);
 }
 
 function getTimer(minutes, secondes) {
@@ -42,7 +43,6 @@ function showTimer() {
 // Load the JSON data
 $.getJSON('./config.json', function(data) {
   participants = data.participants;
-  participantsTimer = [];
 
   minutes = participants.length * data.chrono.minutes;
   secondes = participants.length * data.chrono.secondes;
@@ -56,10 +56,12 @@ $.getJSON('./config.json', function(data) {
     var participantId = 'participant' + participantIndex;
     participantsTimer.push(0);
 
+    sortableParticipants.push(participantIndex);
+
     if (participantIndex === currentId) {
-      $('ul').append("<li id='" + participantId + "' class='active'>" + participants[participantIndex].nom + '<span>00:00</span></li>');
+      $('ul').append("<li id='" + participantId + "' class='active'>" + participants[participantIndex].nom + '<span> (00:00) </span></li>');
     } else {
-      $('ul').append("<li id='" + participantId + "'>" + participants[participantIndex].nom + '<span>00:00</span></li>');
+      $('ul').append("<li id='" + participantId + "'>" + participants[participantIndex].nom + '<span> (00:00) </span></li>');
     }
   }
 
@@ -67,10 +69,13 @@ $.getJSON('./config.json', function(data) {
   showTimer();
 
   $('li').click(function() {
-    var participantId = $(this).attr('id');
-    $(getParticipantId()).removeClass('active');
+    $(".active").removeClass('active');
     $(this).addClass('active');
-    currentId = participantId.substr(participantId.length - 1);
+
+    updateSortableParticipants();
+    var participantId = $(this).attr('id');
+    var trueParticipantId = participantId.substr(participantId.length - 1);
+    currentId = sortableParticipants.indexOf(trueParticipantId);
 
     writeCurrentName();
   });
@@ -81,20 +86,40 @@ function getParticipantId() {
   return '#participant' + currentId;
 }
 
+function updateSortableParticipants() {
+  var currentSortableParticipants = [];
+
+  $("li").each(function (index) {
+    var participantId = $(this).attr("id");
+
+    if (participantId != undefined) {
+      currentSortableParticipants.push(participantId.substr(participantId.length - 1));
+
+      if ($(this).hasClass("active")) {
+        currentId = index;
+      }
+    }
+  });
+
+  sortableParticipants = currentSortableParticipants;
+}
+
 $('#suivant').click(function() {
   if (currentId < participants.length - 1) {
-    $(getParticipantId()).removeClass('active');
+    updateSortableParticipants();
+    $("#participant" + sortableParticipants[currentId]).removeClass('active');
     currentId++;
-    $(getParticipantId()).addClass('active');
+    $("#participant" + sortableParticipants[currentId]).addClass('active');
     writeCurrentName();
   }
 });
 
 $('#precedent').click(function() {
   if (currentId > 0) {
-    $(getParticipantId()).removeClass('active');
+    updateSortableParticipants();
+    $("#participant" + sortableParticipants[currentId]).removeClass('active');
     currentId--;
-    $(getParticipantId()).addClass('active');
+    $("#participant" + sortableParticipants[currentId]).addClass('active');
     writeCurrentName();
   }
 });
@@ -102,11 +127,10 @@ $('#precedent').click(function() {
 // Set the timer every secondes
 function timer() {
   if (isTimerActive == true) {
-    showTimer();
-
-    participantsTimer[currentId]++;
+    
+    participantsTimer[sortableParticipants[currentId]]++;
     var showMinutes = 0;
-    var showSecondes = participantsTimer[currentId];
+    var showSecondes = participantsTimer[sortableParticipants[currentId]];
 
     while (showSecondes >= 60) {
       showMinutes++;
@@ -115,12 +139,13 @@ function timer() {
 
     $(".active span").text(getTimer(showMinutes, showSecondes));
     secondes = secondes - 1;
-    setTimeout(timer, 1000);
-
+    
     if (secondes < 0) {
       secondes = 59;
       minutes = minutes - 1;
     }
+    setTimeout(timer, 1000);
+    showTimer();
   }
 }
 
@@ -136,4 +161,9 @@ $('#switch').click(function() {
   }
 
   timer();
+});
+
+$(function() {
+  $("#sortable").sortable();
+  $("#sortable").disableSelection();
 });
