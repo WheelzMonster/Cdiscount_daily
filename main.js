@@ -38,7 +38,7 @@ function getTimer(minutes, secondes) {
 function showTimer() {
   if (secondes <= 0 && minutes <= 0) {
     $('#timer').text("C'est fini !");
-    $('#timer2').text("C'est fin !");
+    $('#timer2').text("C'est fini !");
   } else {
     $('#timer').text(getTimer(minutes, secondes));
     $('#timer2').text(getTimer(minutes, secondes));

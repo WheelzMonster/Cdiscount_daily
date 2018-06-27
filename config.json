@@ -1,7 +1,7 @@
 {
     "chrono": {
         "minutes": 1,
-        "secondes": 1
+        "secondes": 30
     },
     "participants": [
         {
@@ -30,6 +30,9 @@
         },
         {
             "nom": "Yannick"
+        },
+        {
+            "nom": "Yoda"
         }
     ]
 }
