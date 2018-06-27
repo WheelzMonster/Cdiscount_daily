@@ -4,22 +4,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Daily Timer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="circle.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
 <body>
-    <nav>
-        <ul id="sortable" class="participants"></ul>
-    </nav>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Liste des participants</div>
+        <div class="panel-body">
+            <ul id="sortable" class="participants"></ul>
+        </div>
+    </div>
 
     <div id="Container">
-        <div class="h1Contain">
-            <h1></h1>
+        <h1></h1>
+        <div id="timerContainer">
+            <button type="button" id="precedent" class="btn btn-outline-primary buttonPosition">Precedent</button>
+            <div id="circleContainer" class="clearfix">
+                <div id="timerPourcent" class="c100 p0 big">
+                    <span id="timer2"></span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="suivant" class="btn btn-outline-primary buttonPosition">Suivant</button>
         </div>
-        <span id="timer"></span>
-        <button type="button" id="precedent" class="btn btn-outline-primary">< Prec</button>
-        <button type="button" id="switch" class="btn btn-outline-dark">Start</button>
-        <button type="button" id="suivant" class="btn btn-outline-primary">Suiv ></button>
+
+        <button type="button" id="switch" class="btn btn-outline-success">Start</button>
     </div>
 
     <script src="jquery-3.3.1.min.js"></script>

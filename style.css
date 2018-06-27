@@ -10,13 +10,22 @@ body {
   font-family: sans-serif;
 }
 
-nav {
+.panel-primary {
   position: absolute;
   top: 0;
   left: 0;
-  background: #333333;
-  width: auto;
+  width: 200px;
   height: 100%;
+  background:#eee;
+  border-right: 5px solid #eee;
+}
+
+.panel-heading{
+  border-bottom: 0;
+  padding: 10px 15px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: #eee;
 }
 
 ul {
@@ -24,75 +33,75 @@ ul {
   padding: 0;
 }
 
-li {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 20px;
-  padding: 10px 20px;
-  text-align: center;
+li{
+  list-style: none;
+  background-color: #ffffff;
+  margin-bottom: 3px;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  float: left;
+  cursor: pointer;
+  font-size: 17px;
 }
 
-li:hover, .active {
+li:hover{
+  background-color: #2196f3;
+  color: #fff;
+  transition: 0.15s;
+}
+
+.active{
+  background-color: #28a745;
   color: #ffffff;
-  background: #2196f3;
-  transition: 0.5s;
+}
+
+.active:hover{
+  background-color: #28a745;
+}
+
+li span {
+  float:left;
+  width: 100%;
+  font-size: 12px;
 }
 
 #Container {
-  padding-left: 198px;
-  position: relative;
+  padding-left: 205px;
 }
 
-#timer {
-  background-color:#ffffff;
-  color: #000000;
-  border: 2px solid #2196f3;
-  position: absolute;
-  border-radius: 3px;
-  font-size:38px;
-  text-align:center;
-  margin-top: 50vh;
-  left: 50%;
-  padding: 3px;
-  width: 200px;
-  height: auto;
+#circleContainer {
+  float: left;
+  width:240px;
+  height: 240px;
+  margin: 0px 25px;
 }
 
-button {
-  background-color: #2196f3;
-  color: #ffffff;
-  border-radius: 3px;
-  border: 1px solid #2196f3;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.75);
+#timerContainer{
+  margin-left: calc(50% - 295px);
+  margin-top: 25px;
+  float: left;
+}
+
+.c100 > span{
+  color:#307bbb;
+}
+
+.buttonPosition{
+  font-size: 20px;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  float: left;
+  width: 150px;
+  height: 36px;
+  margin-top: 114px;
 }
 
 #switch {
-  position: absolute;
-  left: 53%;
-  margin-top: 66vh;
   font-size: 22px;
-  padding: 2 23px;
+  width: 120px;
   text-transform: uppercase;
-}
-
-
-#precedent {
-  position: absolute;
-  left: 39.5%;
-  margin-top: 52vh;
-  font-size: 20px;
-  padding: 2 8px;
-  text-transform: uppercase;
-} 
-
-
-#suivant {
-  position: absolute;
-  left: 69%;
-  margin-top: 52vh;
-  font-size: 20px;
-  padding: 2 8px;
-  text-transform: uppercase;
+  margin-left: calc(50% - 60px);
+  margin-top: 25px;
 }
 
 h1{
@@ -100,128 +109,3 @@ h1{
   padding-top: 5px;
   font-size: 33px;
 }
-
-.h1Contain{
-  width: 100%;
-  height: 52px;
-  border: solid 2px #2196f3;
-  
-}
-
-@media(max-width: 1000px){
-  #timer {
-    background-color:#ffffff;
-    color: #000000;
-    border: 2px solid #2196f3;
-    position: absolute;
-    border-radius: 3px;
-    font-size:38px;
-    text-align:center;
-    margin-top: 50vh;
-    left: 50%;
-    padding: 3px;
-    width: 200px;
-    height: auto;
-  }
-  
-  #switch {
-    position: absolute;
-    left: 55%;
-    margin-top: 66vh;
-    font-size: 20px;
-    padding: 2 23px;
-    text-transform: uppercase;
-  }
-  
-  
-  #precedent {
-    position: absolute;
-    left: 36%;
-    margin-top: 52vh;
-    font-size: 18px;
-    padding: 2 8px;
-    text-transform: uppercase;
-  } 
-  
-  
-  #suivant {
-    position: absolute;
-    left: 76%;
-    margin-top: 52vh;
-    font-size: 18px;
-    padding: 2 8px;
-    text-transform: uppercase;
-  }
-}  
-
-@media(max-width: 710px){
-  #timer {
-    background-color:#ffffff;
-    color: #000000;
-    border: 2px solid #2196f3;
-    position: absolute;
-    border-radius: 3px;
-    font-size: 27px;
-    text-align:center;
-    margin-top: 40vh;
-    left: 50%;
-    padding: 3px;
-    width: 150px;
-    height: auto;
-  }
-  
-  #switch {
-    position: absolute;
-    left: 54%;
-    margin-top: 54vh;
-    font-size: 16px;
-    padding: 2 23px;
-    text-transform: uppercase;
-  }
-  
-  
-  #precedent {
-    position: absolute;
-    left: 34%;
-    margin-top: 42vh;
-    font-size: 14px;
-    padding: 2 8px;
-    text-transform: uppercase;
-  } 
-  
-  
-  #suivant {
-    position: absolute;
-    left: 78%;
-    margin-top: 42vh;
-    font-size: 14px;
-    padding: 2 8px;
-    text-transform: uppercase;
-  }
-
-  #container{
-    position: relative;
-    padding-left: 159px;
-  }
-
-  li {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    padding: 10px 20px;
-    text-align: center;
-  }
-
-  h1{
-    text-align: center;
-    padding-top: 5px;
-    font-size: 27px;
-  }
-  
-  .h1Contain{
-    width: 100%;
-    height: 44px;
-    border: solid 2px #2196f3;
-    
-  }
-}  

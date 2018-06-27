@@ -6,6 +6,9 @@ var isTimerActive;
 var isStart = true;
 var participantsTimer = [];
 var sortableParticipants = [];
+var timer2 = 0;
+var totalSecondes = 0;
+var pourcent = 0;
 
 // Write the name of the current participant
 function writeCurrentName() {
@@ -35,8 +38,10 @@ function getTimer(minutes, secondes) {
 function showTimer() {
   if (secondes <= 0 && minutes <= 0) {
     $('#timer').text("C'est fini !");
+    $('#timer2').text("C'est fin !");
   } else {
     $('#timer').text(getTimer(minutes, secondes));
+    $('#timer2').text(getTimer(minutes, secondes));
   }
 }
 
@@ -46,6 +51,9 @@ $.getJSON('./config.json', function(data) {
 
   minutes = participants.length * data.chrono.minutes;
   secondes = participants.length * data.chrono.secondes;
+  
+  totalSecondes = (minutes * 60) + secondes;
+  console.log(totalSecondes);
 
   while (secondes >= 60) {
     minutes++;
@@ -59,9 +67,9 @@ $.getJSON('./config.json', function(data) {
     sortableParticipants.push(participantIndex);
 
     if (participantIndex === currentId) {
-      $('ul').append("<li id='" + participantId + "' class='active'>" + participants[participantIndex].nom + '<span> (00:00) </span></li>');
+      $('ul').append("<li id='" + participantId + "' class='active'>" + participants[participantIndex].nom + '<span> 00:00 </span></li>');
     } else {
-      $('ul').append("<li id='" + participantId + "'>" + participants[participantIndex].nom + '<span> (00:00) </span></li>');
+      $('ul').append("<li id='" + participantId + "'>" + participants[participantIndex].nom + '<span> 00:00 </span></li>');
     }
   }
 
@@ -138,7 +146,14 @@ function timer() {
     };
 
     $(".active span").text(getTimer(showMinutes, showSecondes));
+    $("#timer2").text(getTimer(showMinutes, showSecondes));
     secondes = secondes - 1;
+    timer2++;
+    
+    $("#timerPourcent").removeClass("p" + pourcent);
+    pourcent = Math.round((timer2 / totalSecondes) * 100);
+    $("#timerPourcent").addClass("p" + pourcent);
+    console.log(pourcent);
     
     if (secondes < 0) {
       secondes = 59;
@@ -154,10 +169,14 @@ $('#switch').click(function() {
     isTimerActive = true;
     isStart = false;
     $('#switch').text('Stop');
+    $("#switch").removeClass("btn-outline-success");
+    $("#switch").addClass("btn-outline-danger");
   } else {
     isTimerActive = false;
     isStart = true;
     $('#switch').text('Start');
+    $("#switch").removeClass("btn-outline-danger");
+    $("#switch").addClass("btn-outline-success");
   }
 
   timer();
