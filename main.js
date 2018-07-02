@@ -9,6 +9,7 @@ var sortableParticipants = [];
 var timer2 = 0;
 var totalSecondes = 0;
 var pourcent = 0;
+var maxSecondes;
 
 // Write the name of the current participant
 function writeCurrentName() {
@@ -51,9 +52,10 @@ $.getJSON('./config.json', function(data) {
 
   minutes = participants.length * data.chrono.minutes;
   secondes = participants.length * data.chrono.secondes;
+  maxSecondes = (data.chrono.minutes * 60) + data.chrono.secondes;
+  console.log(maxSecondes);
   
   totalSecondes = (minutes * 60) + secondes;
-  console.log(totalSecondes);
 
   while (secondes >= 60) {
     minutes++;
@@ -149,17 +151,24 @@ function timer() {
     $("#timer2").text(getTimer(showMinutes, showSecondes));
     secondes = secondes - 1;
     timer2++;
+
+    if(maxSecondes < participantsTimer[sortableParticipants[currentId]]){
+      $(".active").addClass("personOut");
+    }
     
     $("#timerPourcent").removeClass("p" + pourcent);
     pourcent = Math.round((timer2 / totalSecondes) * 100);
     $("#timerPourcent").addClass("p" + pourcent);
-    console.log(pourcent);
     
     if (secondes < 0) {
       secondes = 59;
       minutes = minutes - 1;
     }
     setTimeout(timer, 1000);
+
+    if(minutes <= 0 && secondes <= 0){
+      isTimerActive = false;
+    }
     showTimer();
   }
 }

@@ -82,6 +82,16 @@ li span {
   float: left;
 }
 
+.personOut{
+  background-color: #DC3545;
+  color: #ffffff;
+}
+
+.personOut:hover{
+  background-color: #DC3545;
+  color: #ffffff;
+}
+
 .c100 > span{
   color:#307bbb;
 }
