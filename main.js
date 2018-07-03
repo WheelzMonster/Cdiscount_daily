@@ -37,13 +37,9 @@ function getTimer(minutes, secondes) {
 
 // Write the time into a timer
 function showTimer() {
-  if (secondes <= 0 && minutes <= 0) {
-    $('#timer').text("C'est fini !");
-    $('#timer2').text("C'est fin !");
-  } else {
+  
     $('#timer').text(getTimer(minutes, secondes));
     $('#timer2').text(getTimer(minutes, secondes));
-  }
 }
 
 // Load the JSON data
@@ -52,6 +48,7 @@ $.getJSON('./config.json', function(data) {
 
   minutes = participants.length * data.chrono.minutes;
   secondes = participants.length * data.chrono.secondes;
+  maxSecondes = (data.chrono.minutes * 60) + data.chrono.secondes;
   
   totalSecondes = (minutes * 60) + secondes;
 
@@ -149,6 +146,10 @@ function timer() {
     $("#timer2").text(getTimer(showMinutes, showSecondes));
     secondes = secondes - 1;
     timer2++;
+
+    if(maxSecondes < participantsTimer[sortableParticipants[currentId]]){
+      $(".active").addClass("personOut");
+    }
     
     $("#timerPourcent").removeClass("p" + pourcent);
     pourcent = Math.round((timer2 / totalSecondes) * 100);
@@ -159,6 +160,11 @@ function timer() {
       minutes = minutes - 1;
     }
     setTimeout(timer, 1000);
+
+    if(minutes <= 0 && secondes <= 0){
+      isTimerActive = false;
+      $(".fill")
+    }
     showTimer();
   }
 }
