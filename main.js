@@ -9,6 +9,7 @@ var sortableParticipants = [];
 var timer2 = 0;
 var totalSecondes = 0;
 var pourcent = 0;
+var maxSecondes;
 
 // Write the name of the current participant
 function writeCurrentName() {
@@ -53,7 +54,6 @@ $.getJSON('./config.json', function(data) {
   secondes = participants.length * data.chrono.secondes;
   
   totalSecondes = (minutes * 60) + secondes;
-  console.log(totalSecondes);
 
   while (secondes >= 60) {
     minutes++;
@@ -153,7 +153,6 @@ function timer() {
     $("#timerPourcent").removeClass("p" + pourcent);
     pourcent = Math.round((timer2 / totalSecondes) * 100);
     $("#timerPourcent").addClass("p" + pourcent);
-    console.log(pourcent);
     
     if (secondes < 0) {
       secondes = 59;
