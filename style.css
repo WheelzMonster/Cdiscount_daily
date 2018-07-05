@@ -28,6 +28,12 @@ body {
   background-color: #eee;
 }
 
+h1{
+  text-align: center;
+  padding-top: 5px;
+  font-size: 33px;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -44,6 +50,12 @@ li{
   font-size: 17px;
 }
 
+li span {
+  float:left;
+  width: 100%;
+  font-size: 12px;
+}
+
 li:hover{
   background-color: #2196f3;
   color: #fff;
@@ -57,12 +69,6 @@ li:hover{
 
 .active:hover{
   background-color: #28a745;
-}
-
-li span {
-  float:left;
-  width: 100%;
-  font-size: 12px;
 }
 
 #Container {
@@ -93,7 +99,11 @@ li span {
 }
 
 .circleOut{
-  
+  border-color: #DC3545 !important;
+}
+
+.timerOut{
+  color: #DC3545 !important; 
 }
 
 .c100 > span{
@@ -111,15 +121,78 @@ li span {
 }
 
 #switch {
-  font-size: 22px;
+  font-size: 20px;
   width: 120px;
   text-transform: uppercase;
   margin-left: calc(50% - 60px);
   margin-top: 25px;
 }
 
-h1{
-  text-align: center;
-  padding-top: 5px;
-  font-size: 33px;
+#reset {
+  font-size: 20px;
+  width: 120px;
+  text-transform: uppercase;
+  margin-left: calc(50% - 60px);
+  margin-top: 30px;
+}
+
+@media(max-width : 770px){
+  .panel-primary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 100%;
+    background:#eee;
+    border-right: 5px solid #eee;
+  }
+
+  h1{
+    font-size: 28px;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  #circleContainer {
+    float: left;
+    width:240px;
+    height: 240px;
+    margin: 0px 18px;
+  }
+
+#timerContainer{
+    margin-left: calc(50% - 273px);
+    margin-top: 25px;
+    float: left;
+  }
+
+  #Container {
+    padding-left: 135px;
+  }
+
+  .buttonPosition{
+    font-size: 15px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    float: left;
+    width: 130px;
+    height: 36px;
+    margin-top: 114px;
+  }
+
+  #switch {
+    font-size: 22px;
+    width: 100px;
+    text-transform: uppercase;
+    margin-left: calc(50% - 57px);
+    margin-top: 25px;
+  }
+
+#reset {
+    font-size: 22px;
+    width: 100px;
+    text-transform: uppercase;
+    margin-left: calc(50% - 57px);
+    margin-top: 30px;
+  }
 }
